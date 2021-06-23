@@ -1,0 +1,88 @@
+<div  class="container">
+<h2 style="text-align: center; color: brown;">Sign In Form</h2>
+<form class="form-group w-25"  [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <div class="form-group">
+        <label for ="userId">User Id</label>
+        <input class="form-control" type="tel" name="userId" id="userId" placeholder="Enter Mobile number" pattern="[6-9]{1}[0-9]{9}" maxlength="10" formControlName="userId">
+        <span *ngIf="userForm.controls.userId.errors?.required && userForm.controls.userId.touched" class="alert alert-danger">
+            User Id required
+    </span>
+        <span *ngIf="userForm.controls.userId.errors?.pattern && userForm.controls.userId.touched" class="alert alert-danger">
+            InValid Format
+    </span>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for ="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter Password" formControlName="password">
+        <span *ngIf="userForm.controls.password.errors?.required && userForm.controls.password.touched"  class="alert alert-danger">
+            Password is required
+        </span>
+    <span *ngIf="userForm.controls.password.errors?.pattern && userForm.controls.password.touched" class="alert alert-danger">
+        InValid Format
+</span>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for ="role">Role</label>
+        <select class="form-control" formControlName="role">
+      <!-- <input class="form-control" type="text" name="role" id="role" formControlName="role"> -->
+        <option value="" >---Select Role---</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+    </select>
+    <span *ngIf="userForm.controls.role.errors && (userForm.controls.role.touched || userForm.controls.role.dirty)" class="alert alert-danger">
+           Role is required
+    </span>
+    </div>
+    <br>
+    <input type="submit" value="Save" class="btn btn-primary" [disabled]="userForm.invalid">
+    <input style="margin:20px;" type="reset" onclick="alert(' Sure!! You want to Clear')"  class="btn btn-primary">
+</form>
+<br>
+LogIn again to access further<a routerLink="/login" class="btn btn-link">Click Here</a>
+<table class="table table-bordered" *ngIf="user">
+    <tr>
+        <th>UserId</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+    <tr>
+        <td>{{user.userId}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.role}}</td>
+   <!--  <td><input type="button" (click)="updateUser(user.userId)" value="Update" class="btn btn-primary"></td> -->
+    </tr>
+</table>
+<!-- <form class="form-group w-25" [formGroup]="userSearchForm" (ngSubmit)="getUserById()">
+    <div class="form-group">
+        Enter user Id to view details: <br>
+        <input class="form-control" type="text" name="searchId" id="searchId" formControlName="searchId" placeholder="Enter mobile number" />
+        <span *ngIf="userSearchForm.controls.searchId.errors?.required && userSearchForm.controls.searchId.touched" class="alert alert-danger">
+       User Id is required
+</span>
+    </div>
+    <br>
+    <input type="submit" value="Search" class="btn btn-primary" [disabled]="userSearchForm.invalid" />
+</form> -->
+<!-- <form (ngSubmit)="getUserDetails()">
+    <br>Click here to get Details><br>
+    <input type="submit" value="Click Here" class="btn btn-primary"/>
+</form> -->
+<hr>
+<table border="1" class="table table-bordered">
+    <tr *ngIf="users.length >0">
+        <th>UserId</th>
+        <th>Password</th>
+        <th>Role</th>
+    </tr>
+    <tr *ngFor="let us of users">
+        <td>{{us.userId}}</td>
+        <td>{{us.password}}</td>
+        <td>{{us.role}}</td>
+  <!---<td><input type="button" (click)="deleteUser(us.userId)" value="Delete" class="btn btn-primary"></td> -->  
+      <td><input type="button" (click)="updateUser(us.userId)" value="Update" class="btn btn-primary"></td>
+    </tr>
+</table>
+</div>
+

@@ -1,0 +1,49 @@
+<p>admin works!</p>
+<div class="container">
+<div  class="col-md-12 bg-light text-right">
+<button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+</div>
+<h2 style="text-align: center;color: crimson;">Admin Functions</h2>
+
+<form (ngSubmit)="getUserDetails()">
+    <br>Click here to get Details><br>
+    <input type="submit" value="Click Here" class="btn btn-primary"/>
+</form>
+<table border="1" class="table table-bordered">
+    <tr *ngIf="users.length >0">
+        <th>UserId</th>
+       <!--- <th>Password</th>-->
+        <th>Role</th>
+    </tr>
+    <tr *ngFor="let us of users">
+        <td>{{us.userId}}</td>
+       <!-- <td>{{us.password}} </td>-->
+        <td>{{us.role}}</td>
+    </tr>
+</table>
+<form  class="form-group w-25" [formGroup]="userSearchForm" (ngSubmit)="getUserById()">
+    <div style="text-align: center;" class="form-group">
+        Enter user Id to view details: <br>
+        <input class="form-control" type="text" name="searchId" id="searchId" formControlName="searchId" placeholder="Enter mobile number" />
+        <span *ngIf="userSearchForm.controls.searchId.errors?.required && userSearchForm.controls.searchId.touched" class="alert alert-danger">
+       User Id is required
+</span>
+<input type="submit" value="Search" class="btn btn-primary" [disabled]="userSearchForm.invalid" />
+    </div>
+    
+
+</form>
+<table class="table table-bordered" *ngIf="user">
+    <tr>
+        <th>UserId</th>
+       <!-- <th>Password</th> -->
+        <th>Role</th>
+    </tr>
+    <tr>
+        <td>{{user.userId}}</td>
+        <!-- <td>{{user.password}}</td> -->
+        <td>{{user.role}}</td>
+   <!--  <td><input type="button" (click)="updateUser(user.userId)" value="Update" class="btn btn-primary"></td> -->
+    </tr>
+</table>
+</div>

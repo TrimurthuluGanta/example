@@ -1,0 +1,44 @@
+<div class="container">
+<h2 style="text-align: center;">Login</h2>
+<img [src]="adminimg" style="width: 180px;"/><br>
+<form class="form-group w-25" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for ="userId">User Id</label>
+        <input class="form-control" type="tel" name="userId" id="userId" placeholder="Enter Mobile number" pattern="[6-9]{1}[0-9]{9}" maxlength="10" formControlName="userId">
+        <span *ngIf="userForm.controls.userId.errors?.required && userForm.controls.userId.touched" class="alert alert-danger">
+            User Id required
+    </span>
+        <span *ngIf="userForm.controls.userId.errors?.pattern && userForm.controls.userId.touched" class="alert alert-danger">
+            InValid Format
+    </span>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for ="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter Password" formControlName="password">
+        <span *ngIf="userForm.controls.password.errors?.required && userForm.controls.password.touched"  class="alert alert-danger">
+            Password is required
+        </span>
+    <span *ngIf="userForm.controls.password.errors?.pattern && userForm.controls.password.touched" class="alert alert-danger">
+        InValid Format
+</span>
+    </div>
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary" [disabled]="userForm.invalid"> 
+    <br>
+   Don't have an account? <a routerLink="/signin" class="btn btn-link">SignUp</a>
+</form>
+  <!-- <div class="form-group">
+        <label for ="role">Role</label>
+        <select class="form-control" formControlName="role">
+        <option value="" >---Select Role---</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+    </select>
+    <div *ngIf="userForm.controls.role.errors && (userForm.controls.role.touched || userForm.controls.role.dirty)" class="alert alert-danger">
+           Role is required
+        </div>
+    </div> -->
+</div>
+  
+

@@ -1,0 +1,15 @@
+.form-background{
+    background-color: rgb(103, 84, 173);
+}
+.bmargin{
+    margin-left: 30px;
+}
+.fmargin{
+    margin-left: 10px;
+}
+span{
+    margin-left: 5px;
+}
+.alert{
+   padding:4px;
+}
