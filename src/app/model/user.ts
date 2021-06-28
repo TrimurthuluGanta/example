@@ -10,5 +10,5 @@ export class User {
     toString(){
         return "userId"+this.userId+ ", password"+this.password+", role"+this.role;
     }
-  
+  //just for testing in git
 }
